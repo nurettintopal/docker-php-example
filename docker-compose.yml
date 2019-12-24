@@ -1,0 +1,89 @@
+version: '3.7'
+
+services:
+    php71:
+        build: ./php71
+        working_dir: /var/www/app/public
+        container_name: php71
+        restart: always
+        volumes:
+            - ./php71:/var/www/app
+        ports:
+            - "8081:8080"
+        networks:
+            - docker-stack-network
+
+    php72:
+        build: ./php72
+        working_dir: /var/www/app/public
+        container_name: php72
+        restart: always
+        volumes:
+            - ./php72:/var/www/app
+        ports:
+            - "8082:8080"
+        networks:
+            - docker-stack-network
+
+    php73:
+        build: ./php73
+        working_dir: /var/www/app/public
+        container_name: php73
+        restart: always
+        volumes:
+            - ./php73:/var/www/app
+        ports:
+            - "8083:8080"
+        networks:
+            - docker-stack-network
+
+    laravel6:
+        build: ./laravel6
+        working_dir: /var/www/app/public
+        container_name: laravel6
+        restart: always
+        volumes:
+            - ./laravel6:/var/www/app
+        ports:
+            - "8088:8080"
+        networks:
+            - docker-stack-network
+
+    symfony5:
+        build: ./symfony5
+        working_dir: /var/www/app/public
+        container_name: symfony5
+        restart: always
+        volumes:
+            - ./symfony5:/var/www/app
+        ports:
+            - "8089:8080"
+        networks:
+            - docker-stack-network            
+
+    redis:
+        image: redis
+        container_name: redis
+        restart: always
+        ports:
+            - "8098:6379"
+        networks:
+            - docker-stack-network
+
+    mysql:
+        image: mysql:latest
+        container_name: app-mysql
+        restart: always
+        ports:
+            - 8099:3306
+        networks:
+            - docker-stack-network
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: app-mysql
+            MYSQL_USER: user
+            MYSQL_PASSWORD: pass
+            MYSQL_ROOT_HOST: "%"
+networks:
+    docker-stack-network:
+        driver: bridge

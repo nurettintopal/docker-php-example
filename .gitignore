@@ -1,0 +1,5 @@
+php71/public/supervisord*
+php72/public/supervisord*
+php73/public/supervisord*
+laravel6/public/supervisord*
+symfony5/public/supervisord*
