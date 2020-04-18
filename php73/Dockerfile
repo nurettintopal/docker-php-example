@@ -1,7 +1,7 @@
 # Pull base image.
 FROM nurettintopal/docker-php:php-7.3
 
-MAINTAINER Nurettin Topal "nurettintopal@gmail.com"
+LABEL maintainer="Nurettin Topal <nurettintopal@gmail.com>"
 
 RUN rm -rf /etc/nginx/sites-available/default
 RUN rm -rf /etc/nginx/sites-enabled/default

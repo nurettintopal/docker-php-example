@@ -36,14 +36,25 @@ services:
             - "8083:8080"
         networks:
             - docker-stack-network
-
-    laravel6:
-        build: ./laravel6
+    php74:
+        build: ./php74
         working_dir: /var/www/app/public
-        container_name: laravel6
+        container_name: php74
         restart: always
         volumes:
-            - ./laravel6:/var/www/app
+            - ./php74:/var/www/app
+        ports:
+            - "8084:8080"
+        networks:
+            - docker-stack-network
+
+    laravel7:
+        build: ./laravel7
+        working_dir: /var/www/app/public
+        container_name: laravel7
+        restart: always
+        volumes:
+            - ./laravel7:/var/www/app
         ports:
             - "8088:8080"
         networks:
@@ -59,31 +70,7 @@ services:
         ports:
             - "8089:8080"
         networks:
-            - docker-stack-network            
-
-    redis:
-        image: redis
-        container_name: redis
-        restart: always
-        ports:
-            - "8098:6379"
-        networks:
             - docker-stack-network
-
-    mysql:
-        image: mysql:latest
-        container_name: app-mysql
-        restart: always
-        ports:
-            - 8099:3306
-        networks:
-            - docker-stack-network
-        environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: app-mysql
-            MYSQL_USER: user
-            MYSQL_PASSWORD: pass
-            MYSQL_ROOT_HOST: "%"
 networks:
     docker-stack-network:
         driver: bridge
